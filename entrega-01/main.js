@@ -1,3 +1,4 @@
+
 alert ("Simulador de Cuotas");
 
 
@@ -7,14 +8,11 @@ const suma = (a, b) => a + b;
 const resta = (a, b) => a - b;
 
 
-let valor = parseInt(prompt("Ingrese el valor del producto seleccionado"));
-let cuotas = parseInt(prompt("Ingrese la cantidad de cuotas"));
-let cantidadCuotas;
-let cuotasRecargo;
-let recargo = 1.15;
 
+function calcularCuotas(valor, cuotas, recargo) {
+    let cantidadCuotas;
+    let cuotasRecargo;
 
-while (valor != "" && cuotas != "" && valor != "000") {
     if (valor > 0 && cuotas <= 6) {
         cantidadCuotas = division(valor, cuotas);
         alert (`El monto a abonar es de ${cantidadCuotas}`);
@@ -36,7 +34,23 @@ while (valor != "" && cuotas != "" && valor != "000") {
     } else {
         alert("Ingrese el monto y la cantidad de cuotas para evaluar el total, o ingrese 000 en ambos campos para terminar");
     }
-
-    valor = parseInt(prompt("Ingrese el valor del producto seleccionado"));
-    cuotas = parseInt(prompt("Ingrese la cantidad de cuotas"));
 }
+
+
+
+function iniciarSimulador() {
+    let valor = parseInt(prompt("Ingrese el valor del producto seleccionado"));
+    let cuotas = parseInt(prompt("Ingrese la cantidad de cuotas"));
+    let recargo = 1.15;
+
+    while (valor != "" && cuotas != "" && valor != "000") {
+        calcularCuotas(valor, cuotas, recargo);
+        valor = parseInt(prompt("Ingrese el valor del producto seleccionado"));
+        cuotas = parseInt(prompt("Ingrese la cantidad de cuotas"));
+    }
+}
+
+iniciarSimulador();
+
+
+
