@@ -93,19 +93,13 @@ new Usuario ({
 
 // console.log(usuarios);
 
-// const nombresUsuarios = usuarios.map(() => {
-//     if (usuarios["nombre"] != "" ) {
-//         return console.log(usuarios.nombre);
-//     };
+const nombresUsuarios = usuarios.map(() => {
+    if (usuarios["nombre"] != "" ) {
+        return console.log(usuarios[0].nombre);
+    };
 
-// })
+})
 
-// const nombresUsuarios = usuarios.map(() => {
-//     if (usuarios["nombre"] != "" ) {
-//         return console.log(${Usuario.nombre});
-//     };
-
-// });
 
 
 

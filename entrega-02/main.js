@@ -122,10 +122,12 @@ document.body.append;
 
 const nombresUsuarios = usuarios.map(() => {
     if (usuarios["nombre"] != "" ) {
-        return console.log(usuarios.nombre);
+        return usuarios[0].nombre;
     };
 
 });
+
+// console.log(usuarios[0].nombre);
 
 const listaUsuarios = document.createElement("li");
     listaUsuarios.innerHTML = nombresUsuarios;
