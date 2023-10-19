@@ -113,20 +113,27 @@ contador.className = "counter";
 document.body.append;
 
 
-// Envio solo los nombres de los usuarios a una lista ordenada en el html \\
+// ENVIO DE LISTA DE NOMBRES AL HTML \\ NO RESUELTO
+
+/* Envio solo los nombres de los usuarios a una lista ordenada en el html  */
 
 
-const nombresUsuarios = usuarios.forEach(() => {
+
+
+const nombresUsuarios = usuarios.map(() => {
     if (usuarios["nombre"] != "" ) {
         return console.log(usuarios.nombre);
     };
 
 });
 
+const listaUsuarios = document.createElement("li");
+    listaUsuarios.innerHTML = nombresUsuarios;
+    document.querySelector("#list").append(listaUsuarios);
 
 
 
-// PODRIA DIVIDIR ESTA FUNCION EN DOS DISNTINTAS, UNA QUE INICIALICE Y OTRA QUE BUSQE.
+// PODRIA DIVIDIR ESTA FUNCION EN DOS DISNTINTAS, UNA QUE INICIALICE Y OTRA QUE BUSQUE NO?
 
 
 function buscar() {
@@ -165,7 +172,12 @@ function buscar() {
 
 };
 
+const boton = document.createElement("button");
+boton.addEventListener("click", buscar);
+
+boton.innerHTML = "Buscar Usuario";
+document.querySelector("#boton").append(boton);
 
 // buscar();
 
-usuarios.forEach((usuario) => console.log(usuario));
+
