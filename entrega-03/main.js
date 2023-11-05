@@ -123,12 +123,14 @@ const crearUsuario = (info) => {
     localStorage.setItem("usuarios", JSON.stringify(usuarios));
 };
 
+
+// -----> BOTON PARA CREAR USUARIOS <----- \\   
+
 let botonCrearUsuario = document.createElement("button");
 botonCrearUsuario.addEventListener("click", (info) => crearUsuario(info));
 
 botonCrearUsuario.innerHTML = "Crear Usuario";
 document.getElementById("botonUsuario").append(botonCrearUsuario);
-
 
 
 //----> CONTADOR DE USUARIOS <---- \\
@@ -143,9 +145,6 @@ document.body.append;
 
 // ENVIO DE LISTA DE NOMBRES AL HTML \\
 
-/* Envio solo los nombres de los usuarios a una lista ordenada en el html  */
-
-
 const nombresUsuarios = usuarios.map((usuario) => {
     if (usuarios["nombre"] != "" ) {
         return usuario.nombre;
@@ -155,10 +154,8 @@ const nombresUsuarios = usuarios.map((usuario) => {
 
 const listaUsuarios = document.createElement("li");
     listaUsuarios.innerHTML = nombresUsuarios;
+    listaUsuarios.className = "lista";
     document.querySelector("#list").append(listaUsuarios);
-
-
-
 
 // BÚSQUEDA DE USUARIOS \
 
