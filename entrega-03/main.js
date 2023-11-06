@@ -95,7 +95,7 @@ localStorage.setItem("usuarios", JSON.stringify(usuarios));
 
 // ----> INGRESAR NUEVO USUARIO <-----  \\
 
-const crearUsuario = (info) => {
+const crearUsuario = () => {
     let usuarioJson = localStorage.getItem("usuarios");
     let usuarios = JSON.parse(usuarioJson);
 
@@ -118,10 +118,20 @@ const crearUsuario = (info) => {
         correo,
     }).inscribir(usuarios);
 
-    // usuarios.push(nuevoUsuario); \\ el método del constructor ya hace el push.
+
+    // usuarios.push(nuevoUsuario); // el método del constructor ya hace el push.
 
     localStorage.setItem("usuarios", JSON.stringify(usuarios));
 };
+
+/* ----> CONSULTA <---- 
+
+Estoy pudiendo insertar los datos del nuevo inscripto pero no consigo que se guarden, supongo que es por que el array
+mas arriba esta siempre seteando el localStorage con los usuairos que recibe. No logre resolverlo.
+
+Tampoco logro que se actualice el contador, y la lista de nombres al ingresar un nuevo Usuario.
+
+*/
 
 
 // -----> BOTON PARA CREAR USUARIOS <----- \\   
@@ -131,7 +141,6 @@ botonCrearUsuario.addEventListener("click", (info) => crearUsuario(info));
 
 botonCrearUsuario.innerHTML = "Crear Usuario";
 document.getElementById("botonUsuario").append(botonCrearUsuario);
-
 
 //----> CONTADOR DE USUARIOS <---- \\
 
@@ -143,19 +152,26 @@ contador.className = "counter";
 document.body.append;
 
 
-// ENVIO DE LISTA DE NOMBRES AL HTML \\
+// ----> LISTA DE NOMBRES AL HTML <----- \\
 
-const nombresUsuarios = usuarios.map((usuario) => {
+// Traigo primero la lista de nombres de manera Independiente
+
+const nombresUsuarioStorage = localStorage.getItem("usuarios");
+
+const nombresUsuarios = JSON.parse(nombresUsuarioStorage).map((usuario) => {
     if (usuarios["nombre"] != "" ) {
         return usuario.nombre;
     };
-
 });
 
-const listaUsuarios = document.createElement("li");
-    listaUsuarios.innerHTML = nombresUsuarios;
+// Envío la lista de nombres al html
+const listaNombres = nombresUsuarios.forEach((item) => {
+    const listaUsuarios = document.createElement("li");
+    listaUsuarios.innerHTML = `${item}`;
     listaUsuarios.className = "lista";
     document.querySelector("#list").append(listaUsuarios);
+});
+
 
 // BÚSQUEDA DE USUARIOS \
 
