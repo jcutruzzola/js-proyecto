@@ -23,7 +23,7 @@ class Usuario {
 
 
 // ARRAY \\ 
-const usuarios = [];
+const usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
 
 // USUARIOS INSCRIPTOS\\
 
@@ -91,7 +91,14 @@ new Usuario ({
 
 // ENVIO DE LOS USUARIOS AL LOCALSTORAGE \\
 
-localStorage.setItem("usuarios", JSON.stringify(usuarios));
+// localStorage.setItem("usuarios", JSON.stringify(usuarios))
+
+
+const usuariosLocalStorage = localStorage.getItem("usuarios");
+
+if (!usuariosLocalStorage) {
+  localStorage.setItem("usuarios", JSON.stringify(usuarios));
+}
 
 // ----> INGRESAR NUEVO USUARIO <-----  \\
 
@@ -124,15 +131,6 @@ const crearUsuario = () => {
     localStorage.setItem("usuarios", JSON.stringify(usuarios));
 };
 
-/* ----> CONSULTA <---- 
-
-Estoy pudiendo insertar los datos del nuevo inscripto pero no consigo que se guarden, supongo que es por que el array
-mas arriba esta siempre seteando el localStorage con los usuairos que recibe. No logre resolverlo.
-
-Tampoco logro que se actualice el contador, y la lista de nombres al ingresar un nuevo Usuario.
-
-*/
-
 
 // -----> BOTON PARA CREAR USUARIOS <----- \\   
 
@@ -142,34 +140,31 @@ botonCrearUsuario.addEventListener("click", (info) => crearUsuario(info));
 botonCrearUsuario.innerHTML = "Crear Usuario";
 document.getElementById("botonUsuario").append(botonCrearUsuario);
 
+
+
+
+// ----> LISTA DE NOMBRES AL HTML <----- \\
+
+const nombresUsuarioStorage = localStorage.getItem("usuarios");
+const usuariosGuardados = JSON.parse(nombresUsuarioStorage);
+
 //----> CONTADOR DE USUARIOS <---- \\
 
-const contadorUsuarios = usuarios.length;
+const contadorUsuarios = usuariosGuardados.length;
 
 const contador = document.getElementById("contador");
 contador.innerHTML = contadorUsuarios;
 contador.className = "counter";
 document.body.append;
 
+const listaNombres = document.querySelector("#list");
+listaNombres.innerHTML = ""; // Limpia la lista existente
 
-// ----> LISTA DE NOMBRES AL HTML <----- \\
-
-// Traigo primero la lista de nombres de manera Independiente
-
-const nombresUsuarioStorage = localStorage.getItem("usuarios");
-
-const nombresUsuarios = JSON.parse(nombresUsuarioStorage).map((usuario) => {
-    if (usuarios["nombre"] != "" ) {
-        return usuario.nombre;
-    };
-});
-
-// Envío la lista de nombres al html
-const listaNombres = nombresUsuarios.forEach((item) => {
+usuariosGuardados.forEach((usuario) => {
     const listaUsuarios = document.createElement("li");
-    listaUsuarios.innerHTML = `${item}`;
+    listaUsuarios.innerHTML = usuario.nombre;
     listaUsuarios.className = "lista";
-    document.querySelector("#list").append(listaUsuarios);
+    listaNombres.append(listaUsuarios);
 });
 
 
