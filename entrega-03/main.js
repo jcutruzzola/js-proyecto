@@ -96,9 +96,13 @@ new Usuario ({
 
 const usuariosLocalStorage = localStorage.getItem("usuarios");
 
-if (!usuariosLocalStorage) {
-  localStorage.setItem("usuarios", JSON.stringify(usuarios));
-}
+!usuariosLocalStorage && localStorage.setItem("usuarios", JSON.stringify(usuarios));
+
+// if (!usuariosLocalStorage) {
+//   localStorage.setItem("usuarios", JSON.stringify(usuarios));
+// }
+
+
 
 // ----> INGRESAR NUEVO USUARIO <-----  \\
 
